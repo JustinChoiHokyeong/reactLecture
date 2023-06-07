@@ -1,16 +1,21 @@
 import React from "react";
 import "App.css";
 import { link } from "fs";
+import { ReducerPattern } from "pages/reducerPattern";
 
 interface ICounter1 {
   initialValue: number;
+}
+
+interface ICounter1State {
+  value: number;
 }
 
 interface IFruitsList {
   fruits: string[];
 }
 
-class Counter1 extends React.Component<ICounter1> {
+class Counter1 extends React.Component<ICounter1, ICounter1State> {
   state = {
     value: this.props.initialValue,
   };
@@ -22,12 +27,28 @@ class Counter1 extends React.Component<ICounter1> {
         counter : {value}
         <button
           onClick={() => {
-            this.setState({
-              value: value + 1,
-            });
+            this.setState({ value: value + 1 });
           }}
         >
           +1
+        </button>
+        <button
+          onClick={() => {
+            this.setState((prev) => {
+              const { value } = prev;
+              return { value: value + 1 };
+            });
+            this.setState((prev) => {
+              const { value } = prev;
+              return { value: value + 1 };
+            });
+            this.setState((prev) => {
+              const { value } = prev;
+              return { value: value + 1 };
+            });
+          }}
+        >
+          +3
         </button>
       </div>
     );
@@ -56,6 +77,7 @@ function App() {
       Hello, World!
       <Counter1 initialValue={10} />
       <FruitsList fruits={fruitsArr} />
+      <ReducerPattern />
     </div>
   );
 }
