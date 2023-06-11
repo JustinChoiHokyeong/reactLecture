@@ -1,7 +1,9 @@
 import React from "react";
 import "App.css";
-import { link } from "fs";
 import { ReducerPattern } from "pages/reducerPattern";
+import PostDetail from "pages/postDetail";
+import ThemedButton from "pages/ThemedButton";
+import SubApp from "pages/SubApp";
 
 interface ICounter1 {
   initialValue: number;
@@ -70,16 +72,33 @@ class FruitsList extends React.Component<IFruitsList> {
   }
 }
 
-function App() {
-  const fruitsArr = ["blueBerry", "StrawBerry", "waterMelon"];
-  return (
-    <div>
-      Hello, World!
-      <Counter1 initialValue={10} />
-      <FruitsList fruits={fruitsArr} />
-      <ReducerPattern />
-    </div>
-  );
+class App extends React.Component {
+  state = {
+    postId: 10,
+  };
+  render() {
+    const fruitsArr = ["blueBerry", "StrawBerry", "waterMelon"];
+    return (
+      <div>
+        Hello, World!
+        <Counter1 initialValue={10} />
+        <FruitsList fruits={fruitsArr} />
+        <ReducerPattern />
+        <PostDetail postId={this.state.postId} />
+        <button
+          onClick={() => {
+            this.setState({
+              postId: 20,
+            });
+          }}
+        >
+          postId 변경
+        </button>
+        <ThemedButton theme={"default"} label="테마버튼" />
+        <SubApp></SubApp>
+      </div>
+    );
+  }
 }
 
 export default App;
