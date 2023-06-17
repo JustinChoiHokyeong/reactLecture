@@ -4,6 +4,7 @@ import { ReducerPattern } from "pages/reducerPattern";
 import PostDetail from "pages/postDetail";
 import ThemedButton from "pages/ThemedButton";
 import SubApp from "pages/SubApp";
+import Counter from "pages/counter";
 
 interface ICounter1 {
   initialValue: number;
@@ -96,6 +97,10 @@ class App extends React.Component {
         </button>
         <ThemedButton theme={"default"} label="테마버튼" />
         <SubApp></SubApp>
+        <hr />
+        <Counter />
+        <Counter color={"blue"} />
+        <Counter color={"green"} />
       </div>
     );
   }
